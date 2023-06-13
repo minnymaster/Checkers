@@ -67,13 +67,14 @@
       <DependentUpon>MainMenu.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
+      <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
     </EmbeddedResource>
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
     </Compile>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -87,6 +88,21 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Sprites\White figure.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Black_figure.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Sprites\Black figure.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Sprites\Alpha Black figure.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Sprites\Alpha White figure.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

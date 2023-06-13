@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Checkers.Properties;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -38,8 +39,8 @@ namespace Checkers
         {
             InitializeComponent();
 
-            whiteFigure = new Bitmap(new Bitmap(@"C:\Users\Даниил\source\repos\Checkers\Checkers\Resources\Sprites\White figure.png"), new Size(cellSize - 10, cellSize - 10));
-            blackFigure = new Bitmap(new Bitmap(@"C:\Users\Даниил\source\repos\Checkers\Checkers\Resources\Sprites\Black figure.png"), new Size(cellSize - 10, cellSize - 10));
+            blackFigure = new Bitmap(new Bitmap(Resources.Black_figure), new Size(cellSize - 10, cellSize - 10));
+            whiteFigure = new Bitmap(new Bitmap(Resources.White_figure), new Size(cellSize - 10, cellSize - 10));
 
             this.Text = "Checkers";
 
@@ -242,7 +243,6 @@ namespace Checkers
             if (map[button.Location.Y / cellSize, button.Location.X / cellSize] == 1 && button.Location.Y / cellSize == mapSize - 1) 
             {
                 button.Text = "D";
-                
             }
             if (map[button.Location.Y / cellSize, button.Location.X / cellSize] == 2 && button.Location.Y / cellSize == 0)
             {
