@@ -34,6 +34,8 @@ namespace Checkers
 
         Image whiteFigure;
         Image blackFigure;
+        Image alphaWhiteFigure;
+        Image alphaBlackFigure;
 
         public Game()
         {
@@ -41,6 +43,8 @@ namespace Checkers
 
             blackFigure = new Bitmap(new Bitmap(Resources.Black_figure), new Size(cellSize - 10, cellSize - 10));
             whiteFigure = new Bitmap(new Bitmap(Resources.White_figure), new Size(cellSize - 10, cellSize - 10));
+            alphaBlackFigure = new Bitmap(new Bitmap(Resources.Alpha_Black_figure), new Size(cellSize - 10, cellSize - 10));
+            alphaWhiteFigure = new Bitmap(new Bitmap(Resources.Alpha_White_figure), new Size(cellSize - 10, cellSize - 10));
 
             this.Text = "Checkers";
 
@@ -107,7 +111,6 @@ namespace Checkers
                     else if (map[i, j] == 2) button.Image = blackFigure;
 
                     button.BackColor = GetPrevButtonColor(button);
-                    button.ForeColor = Color.Red;
 
                     buttons[i, j] = button;
 
@@ -155,7 +158,7 @@ namespace Checkers
                 DeactivateAllButtons();
                 pressedButton.Enabled = true;
                 countEatSteps = 0;
-                if(pressedButton.Text == "D")
+                if(pressedButton.Image == alphaBlackFigure || pressedButton.Image == alphaWhiteFigure)
                 ShowSteps(pressedButton.Location.Y / cellSize, pressedButton.Location.X / cellSize,false);
                 else ShowSteps(pressedButton.Location.Y / cellSize, pressedButton.Location.X / cellSize);
 
@@ -191,7 +194,7 @@ namespace Checkers
                     isMoving = false;                    
                     CloseSteps();
                     DeactivateAllButtons();
-                    if (pressedButton.Text == "D")
+                    if (pressedButton.Image == alphaBlackFigure || pressedButton.Image == alphaWhiteFigure)
                         ShowSteps(pressedButton.Location.Y / cellSize, pressedButton.Location.X / cellSize, false);
                     else ShowSteps(pressedButton.Location.Y / cellSize, pressedButton.Location.X / cellSize);
                     if (countEatSteps == 0 || !isContinue)
@@ -223,7 +226,7 @@ namespace Checkers
                 {
                     if (map[i, j] == currentPlayer)
                     {
-                        if (buttons[i, j].Text == "D")
+                        if (buttons[i, j].Image == alphaBlackFigure || buttons[i, j].Image == alphaWhiteFigure)
                             isOneStep = false;
                         else isOneStep = true;
                         if (IsButtonHasEatStep(i, j, isOneStep, new int[2] { 0, 0 }))
@@ -242,11 +245,11 @@ namespace Checkers
         {
             if (map[button.Location.Y / cellSize, button.Location.X / cellSize] == 1 && button.Location.Y / cellSize == mapSize - 1) 
             {
-                button.Text = "D";
+                button.Image = alphaWhiteFigure;
             }
             if (map[button.Location.Y / cellSize, button.Location.X / cellSize] == 2 && button.Location.Y / cellSize == 0)
             {
-                button.Text = "D";
+                button.Image = alphaBlackFigure;
             }
         }
 
@@ -591,7 +594,7 @@ namespace Checkers
 
         private void button1_Click(object sender, EventArgs e)
         {
-            string guideFilePath = @"C:\Users\Даниил\OneDrive\Рабочий стол\Checkers\Checkers\Shashki.gui"; // Замените путь на полный путь к файлу guide.gui
+            string guideFilePath = @"C:\Users\artem\Source\Repos\Checkers\Checkers\Shashki.gui"; // Замените путь на полный путь к файлу guide.gui
 
             if (System.IO.File.Exists(guideFilePath))
             {
@@ -601,6 +604,11 @@ namespace Checkers
             {
                 MessageBox.Show("Guide file not found.");
             }
+        }
+
+        private void Game_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }
