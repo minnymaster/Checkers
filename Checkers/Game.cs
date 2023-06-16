@@ -18,6 +18,8 @@ namespace Checkers
     {
         const int mapSize = 8;
         const int cellSize = 50;
+        int whiteEaten;
+        int blackEaten;
 
         int currentPlayer;
 
@@ -52,6 +54,12 @@ namespace Checkers
 
             StartPosition = FormStartPosition.CenterScreen;
             FormBorderStyle = FormBorderStyle.FixedSingle;
+
+            MaximizeBox = false;
+
+            whiteEaten = 0;
+            blackEaten = 0;
+
 
             Init();
         }
@@ -103,6 +111,7 @@ namespace Checkers
             this.Width = (mapSize + 1) * cellSize;
             this.Height = (mapSize + 1) * cellSize;
             button1.Anchor = AnchorStyles.Right & AnchorStyles.Top;
+            label1.Anchor = AnchorStyles.Right;
 
             for(int i = 0; i < mapSize; i++)
             {
@@ -129,6 +138,13 @@ namespace Checkers
         public void SwitchPlayer()
         {
             currentPlayer = currentPlayer == 1 ? 2 : 1;
+            if (currentPlayer == 1)
+                label1.Text = "Сейчас ходят белые";
+            else
+                label1.Text = "Сейчас ходят чёрные";
+
+            label2.Text = ("Счёт белых: " + whiteEaten);
+            label3.Text = ("Счёт чёрных: " + blackEaten);
             ResetGame();
         }
 
@@ -278,6 +294,15 @@ namespace Checkers
                 i += startIndexX;
                 j += startIndexY;
                 currCount++;
+            }
+
+            if (currentPlayer == 1)
+            {
+                blackEaten++;
+            }
+            else if (currentPlayer == 2)
+            {
+                whiteEaten++;
             }
 
         }
@@ -601,20 +626,7 @@ namespace Checkers
 
         private void button1_Click(object sender, EventArgs e)
         {
-            string tempFolderPath = Path.Combine(Path.GetTempPath(), Guid.NewGuid().ToString());
-            Directory.CreateDirectory(tempFolderPath);
-            byte[] guiFileBytes = Properties.Resources.Shashki;
-            string filePath = Path.Combine(tempFolderPath, "fag.gui");
-            File.WriteAllBytes(filePath, guiFileBytes);
-            
-            if (System.IO.File.Exists(filePath))
-            {
-                Process.Start(filePath);
-            }
-            else
-            {
-                MessageBox.Show("Guide file not found.");
-            }
+            this.Close();
         }
 
         private void Game_Load(object sender, EventArgs e)
