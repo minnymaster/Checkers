@@ -129,7 +129,7 @@ namespace Checkers
 
         public void CreateMap()
         {
-            this.Width = (mapSize + 1) * cellSize;
+            this.Width = (mapSize + 1) * cellSize + 100;
             this.Height = (mapSize + 1) * cellSize;
             button1.Anchor = AnchorStyles.Right & AnchorStyles.Top;
             label1.Anchor = AnchorStyles.Right;
