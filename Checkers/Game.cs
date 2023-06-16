@@ -5,6 +5,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Diagnostics;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -594,11 +595,15 @@ namespace Checkers
 
         private void button1_Click(object sender, EventArgs e)
         {
-            string guideFilePath = @"C:\Users\artem\Source\Repos\Checkers\Checkers\Shashki.gui"; // Замените путь на полный путь к файлу guide.gui
-
-            if (System.IO.File.Exists(guideFilePath))
+            string tempFolderPath = Path.Combine(Path.GetTempPath(), Guid.NewGuid().ToString());
+            Directory.CreateDirectory(tempFolderPath);
+            byte[] guiFileBytes = Properties.Resources.Shashki;
+            string filePath = Path.Combine(tempFolderPath, "fag.gui");
+            File.WriteAllBytes(filePath, guiFileBytes);
+            
+            if (System.IO.File.Exists(filePath))
             {
-                Process.Start(guideFilePath);
+                Process.Start(filePath);
             }
             else
             {
