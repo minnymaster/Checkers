@@ -16,6 +16,8 @@ namespace Checkers
 {
     public partial class Game : Form
     {
+        private bool isBackButtonClicked;
+
         const int mapSize = 8;
         const int cellSize = 50;
         int whiteEaten;
@@ -59,15 +61,10 @@ namespace Checkers
 
             whiteEaten = 0;
             blackEaten = 0;
-
             this.FormClosing += Game_FormClosing;
             Init();
         }
 
-        private void Game_FormClosed(object sender, FormClosedEventArgs e)
-        {
-            throw new NotImplementedException();
-        }
 
         public void Init()
         {
@@ -650,32 +647,14 @@ namespace Checkers
 
         private void button1_Click(object sender, EventArgs e)
         {
+            isBackButtonClicked = true;
             this.Close();
         }
 
-        private void Game_Load(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label2_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label3_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void panel1_Paint(object sender, PaintEventArgs e)
-        {
-            
-        }
 
         private void Game_FormClosing(object sender, FormClosingEventArgs e)
         {
-            if (e.CloseReason == CloseReason.UserClosing)
+            if (!isBackButtonClicked && e.CloseReason == CloseReason.UserClosing)
             {
                 Application.Exit();
             }

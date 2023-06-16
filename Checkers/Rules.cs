@@ -13,6 +13,7 @@ namespace Checkers
 {
     public partial class Rules : Form
     {
+        private bool isBackButtonClicked;
         public Rules()
         {
             InitializeComponent();
@@ -23,12 +24,13 @@ namespace Checkers
         
         private void button1_Click(object sender, EventArgs e)
         {
+            isBackButtonClicked = true;
             this.Close();
         }
 
         private void Rules_FormClosing(object sender, FormClosingEventArgs e)
         {
-            if (e.CloseReason == CloseReason.UserClosing)
+            if (!isBackButtonClicked && e.CloseReason == CloseReason.UserClosing)
             {
                 Application.Exit();
             }

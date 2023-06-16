@@ -56,7 +56,7 @@ namespace Checkers
             // Отображаем форму главного меню после закрытия формы игры
             this.Show();
         }
-
+        
         private void button3_Click(object sender, EventArgs e)
         {
             Rules rulesForm = new Rules();
