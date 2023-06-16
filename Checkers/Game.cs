@@ -11,6 +11,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
+
 namespace Checkers
 {
     public partial class Game : Form
@@ -48,6 +49,9 @@ namespace Checkers
             alphaWhiteFigure = new Bitmap(new Bitmap(Resources.Alpha_White_figure), new Size(cellSize - 10, cellSize - 10));
 
             this.Text = "Checkers";
+
+            StartPosition = FormStartPosition.CenterScreen;
+            FormBorderStyle = FormBorderStyle.FixedSingle;
 
             Init();
         }
@@ -98,6 +102,7 @@ namespace Checkers
         {
             this.Width = (mapSize + 1) * cellSize;
             this.Height = (mapSize + 1) * cellSize;
+            button1.Anchor = AnchorStyles.Right & AnchorStyles.Top;
 
             for(int i = 0; i < mapSize; i++)
             {
@@ -106,6 +111,7 @@ namespace Checkers
                     Button button = new Button();
                     button.Location = new Point(j * cellSize, i * cellSize);
                     button.Size = new Size(cellSize, cellSize);
+                    button.Anchor = AnchorStyles.Top & AnchorStyles.Bottom & AnchorStyles.Left & AnchorStyles.Right;
                     button.Click += new EventHandler(OnFigurePress);
                     if (map[i, j] == 1)
                         button.Image = whiteFigure;
