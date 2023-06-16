@@ -60,8 +60,13 @@ namespace Checkers
             whiteEaten = 0;
             blackEaten = 0;
 
-
+            this.FormClosing += Game_FormClosing;
             Init();
+        }
+
+        private void Game_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            throw new NotImplementedException();
         }
 
         public void Init()
@@ -666,6 +671,14 @@ namespace Checkers
         private void panel1_Paint(object sender, PaintEventArgs e)
         {
             
+        }
+
+        private void Game_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            if (e.CloseReason == CloseReason.UserClosing)
+            {
+                Application.Exit();
+            }
         }
     }
 }

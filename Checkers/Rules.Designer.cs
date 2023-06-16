@@ -79,7 +79,6 @@
             this.textBox1.TabIndex = 4;
             this.textBox1.TabStop = false;
             this.textBox1.Text = resources.GetString("textBox1.Text");
-            this.textBox1.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
             // 
             // label1
             // 
@@ -92,7 +91,6 @@
             this.label1.Size = new System.Drawing.Size(323, 112);
             this.label1.TabIndex = 3;
             this.label1.Text = "Правила";
-            this.label1.Click += new System.EventHandler(this.label1_Click_1);
             // 
             // button1
             // 
