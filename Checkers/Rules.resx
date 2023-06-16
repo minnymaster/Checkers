@@ -117,4 +117,8 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="textBox1.Text" xml:space="preserve">
+    <value>Доска 8х8, шашки занимают первые три ряда с каждой стороны; бить можно произвольное количество шашек в любых направлениях; простая ходит только вперед, но может бить назад, дамка может ходить на любое число полей; цель игры - съесть или запереть все шашки противника.
+</value>
+  </data>
 </root>
