@@ -101,8 +101,27 @@ namespace Checkers
             }
             if (!player1 || !player2)
             {
-                this.Controls.Clear();
-                Init();
+                string message;
+                string caption = "Игра окончена";
+                MessageBoxButtons buttons = MessageBoxButtons.YesNo;
+
+                if (!player1)
+                    message = "Победили чёрные! \nХотите сыграть еще раз?";
+                else
+                    message = "Победили белые! \nХотите сыграть еще раз?";
+
+                DialogResult result = MessageBox.Show(message, caption, buttons);
+
+                if (result == DialogResult.Yes)
+                {
+                    this.Controls.Clear();
+                    Init();
+                }
+
+                else if (result == DialogResult.No)
+                {
+                    this.Close();
+                }
             }
         }
 
@@ -646,7 +665,7 @@ namespace Checkers
 
         private void panel1_Paint(object sender, PaintEventArgs e)
         {
-
+            
         }
     }
 }
