@@ -18,6 +18,8 @@ namespace Checkers
         {
             InitializeComponent();
 
+            this.Text = "Шашки";
+
             this.FormClosing += Rules_FormClosing;
         }
 

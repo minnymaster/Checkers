@@ -10,6 +10,8 @@ namespace Checkers
         public MainMenu()
         {
             InitializeComponent();
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
+            this.Text = "Шашки";
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -30,10 +32,6 @@ namespace Checkers
             }
         }
 
-        private void label1_Click(object sender, EventArgs e)
-        {
-
-        }
 
         private void GameForm_FormClosed(object sender, FormClosedEventArgs e)
         {

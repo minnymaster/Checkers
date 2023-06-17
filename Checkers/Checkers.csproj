@@ -120,6 +120,18 @@
   <ItemGroup>
     <None Include="Resources\Sprites\Alpha White figure.png" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\sound.mp3" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\sound.wav" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\game-won.wav" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\zvuk-ou-may-58.wav" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>

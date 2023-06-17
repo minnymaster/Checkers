@@ -7,6 +7,7 @@ using System.Diagnostics;
 using System.Drawing;
 using System.IO;
 using System.Linq;
+using System.Media;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -16,6 +17,7 @@ namespace Checkers
 {
     public partial class Game : Form
     {
+
         private bool isBackButtonClicked;
 
         const int mapSize = 8;
@@ -52,12 +54,13 @@ namespace Checkers
             alphaBlackFigure = new Bitmap(new Bitmap(Resources.Alpha_Black_figure), new Size(cellSize - 10, cellSize - 10));
             alphaWhiteFigure = new Bitmap(new Bitmap(Resources.Alpha_White_figure), new Size(cellSize - 10, cellSize - 10));
 
-            this.Text = "Checkers";
+            this.Text = "Шашки";
 
             StartPosition = FormStartPosition.CenterScreen;
             FormBorderStyle = FormBorderStyle.FixedSingle;
 
             MaximizeBox = false;
+
 
             whiteEaten = 0;
             blackEaten = 0;
@@ -88,6 +91,8 @@ namespace Checkers
 
         public void ResetGame()
         {
+            
+
             bool player1 = false;
             bool player2 = false;
 
@@ -107,6 +112,9 @@ namespace Checkers
                 string caption = "Игра окончена";
                 MessageBoxButtons buttons = MessageBoxButtons.YesNo;
 
+                SoundPlayer soundWon = new SoundPlayer(Resources.game_won);
+                soundWon.Play();
+
                 if (!player1)
                     message = "Победили чёрные! \nХотите сыграть еще раз?";
                 else
@@ -116,12 +124,14 @@ namespace Checkers
 
                 if (result == DialogResult.Yes)
                 {
-                    this.Controls.Clear();
-                    Init();
+                    isBackButtonClicked = true;
+                    this.Close();
+                    Application.Run(new Game());
                 }
 
                 else if (result == DialogResult.No)
                 {
+                    isBackButtonClicked = true;
                     this.Close();
                 }
             }
@@ -190,6 +200,8 @@ namespace Checkers
 
         public void OnFigurePress(object sender, EventArgs e)
         {
+            SoundPlayer soundGo = new SoundPlayer(Resources.sound);
+
             if (prevButton != null)
                 prevButton.BackColor = GetPrevButtonColor(prevButton);
 
@@ -224,7 +236,7 @@ namespace Checkers
                       if (Math.Abs(pressedButton.Location.X / cellSize - prevButton.Location.X/cellSize) > 1)
                     {
                         isContinue = true;
-                        DeleteEaten(pressedButton, prevButton);                        
+                        DeleteEaten(pressedButton, prevButton);
                     }
                     int temp = map[pressedButton.Location.Y / cellSize, pressedButton.Location.X / cellSize];
                     map[pressedButton.Location.Y / cellSize, pressedButton.Location.X / cellSize] = map[prevButton.Location.Y / cellSize, prevButton.Location.X / cellSize];
@@ -233,7 +245,9 @@ namespace Checkers
                     prevButton.Image = null;
                     pressedButton.Text = prevButton.Text;
                     prevButton.Text = "";
+                    soundGo.Stop();
                     SwitchButtonToCheat(pressedButton);
+                    
                     countEatSteps = 0;
                     isMoving = false;                    
                     CloseSteps();
@@ -247,12 +261,15 @@ namespace Checkers
                         SwitchPlayer();
                         ShowPossibleSteps();
                         isContinue = false;
-                    }else if(isContinue)
+                    }
+                    else if(isContinue)
                     {
                         pressedButton.BackColor = Color.Red;
                         pressedButton.Enabled = true;
                         isMoving = true;
                     }
+                    soundGo.Play();
+
                 }
             }
 
@@ -290,15 +307,22 @@ namespace Checkers
             if (map[button.Location.Y / cellSize, button.Location.X / cellSize] == 1 && button.Location.Y / cellSize == mapSize - 1) 
             {
                 button.Image = alphaWhiteFigure;
+                SoundPlayer soundCheat = new SoundPlayer(Resources.sound_cheat);
+                soundCheat.Play();
             }
             if (map[button.Location.Y / cellSize, button.Location.X / cellSize] == 2 && button.Location.Y / cellSize == 0)
             {
                 button.Image = alphaBlackFigure;
+                SoundPlayer soundCheat = new SoundPlayer(Resources.sound_cheat);
+                soundCheat.Play();
             }
+
+            
         }
 
         public void DeleteEaten(Button endButton, Button startButton)
         {
+           
             int count = Math.Abs(endButton.Location.Y / cellSize - startButton.Location.Y / cellSize);
             int startIndexX = endButton.Location.Y / cellSize - startButton.Location.Y / cellSize;
             int startIndexY = endButton.Location.X / cellSize - startButton.Location.X / cellSize;
