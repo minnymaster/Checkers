@@ -20,30 +20,30 @@ namespace Checkers
 
         private bool isBackButtonClicked;
 
-        const int mapSize = 8;
-        const int cellSize = 50;
-        int whiteEaten;
-        int blackEaten;
+        internal const int mapSize = 8;
+        internal const int cellSize = 50;
+        internal int whiteEaten;
+        internal int blackEaten;
 
-        int currentPlayer;
+        internal int currentPlayer;
 
-        List<Button> simpleSteps = new List<Button>();
+        internal List<Button> simpleSteps = new List<Button>();
 
-        int countEatSteps = 0;
-        Button prevButton;
-        Button pressedButton;
-        bool isContinue = false;
+        internal int countEatSteps = 0;
+        internal Button prevButton;
+        internal Button pressedButton;
+        internal bool isContinue = false;
 
-        bool isMoving;
+        internal bool isMoving;
 
-        int[,] map = new int[mapSize, mapSize];
+        internal int[,] map = new int[mapSize, mapSize];
 
-        Button[,] buttons = new Button[mapSize, mapSize];
+        internal Button[,] buttons = new Button[mapSize, mapSize];
 
-        Image whiteFigure;
-        Image blackFigure;
-        Image alphaWhiteFigure;
-        Image alphaBlackFigure;
+        internal Image whiteFigure;
+        internal Image blackFigure;
+        internal Image alphaWhiteFigure;
+        internal Image alphaBlackFigure;
 
         public Game()
         {
