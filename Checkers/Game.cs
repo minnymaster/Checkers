@@ -180,8 +180,8 @@ namespace Checkers
             else
                 label1.Text = "Сейчас ходят чёрные";
 
-            label2.Text = ("Счёт белых: " + whiteEaten);
-            label3.Text = ("Счёт чёрных: " + blackEaten);
+            label2.Text = ("Счёт белых: " + blackEaten);
+            label3.Text = ("Счёт чёрных: " + whiteEaten);
             ResetGame();
         }
 
