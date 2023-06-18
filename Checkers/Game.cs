@@ -200,7 +200,7 @@ namespace Checkers
 
         public void OnFigurePress(object sender, EventArgs e)
         {
-            SoundPlayer soundGo = new SoundPlayer(Resources.sound);
+            SoundPlayer soundGo = new SoundPlayer(Resources.sound_cheat);
 
             if (prevButton != null)
                 prevButton.BackColor = GetPrevButtonColor(prevButton);
@@ -245,7 +245,6 @@ namespace Checkers
                     prevButton.Image = null;
                     pressedButton.Text = prevButton.Text;
                     prevButton.Text = "";
-                    soundGo.Stop();
                     SwitchButtonToCheat(pressedButton);
                     
                     countEatSteps = 0;
@@ -307,14 +306,10 @@ namespace Checkers
             if (map[button.Location.Y / cellSize, button.Location.X / cellSize] == 1 && button.Location.Y / cellSize == mapSize - 1) 
             {
                 button.Image = alphaWhiteFigure;
-                SoundPlayer soundCheat = new SoundPlayer(Resources.sound_cheat);
-                soundCheat.Play();
             }
             if (map[button.Location.Y / cellSize, button.Location.X / cellSize] == 2 && button.Location.Y / cellSize == 0)
             {
                 button.Image = alphaBlackFigure;
-                SoundPlayer soundCheat = new SoundPlayer(Resources.sound_cheat);
-                soundCheat.Play();
             }
 
             
