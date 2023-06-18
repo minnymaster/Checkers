@@ -35,7 +35,7 @@ namespace Checkers
         }
 
 
-        private void GameForm_FormClosed(object sender, FormClosedEventArgs e)
+        public void GameForm_FormClosed(object sender, FormClosedEventArgs e)
         {
             // Отображаем форму главного меню после закрытия формы игры
             if(!IsRestart)

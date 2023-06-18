@@ -127,7 +127,9 @@ namespace Checkers
                     isBackButtonClicked = true;
                     MainMenu.IsRestart = true;
                     this.Close();
+                    MainMenu main = new MainMenu();
                     Game game = new Game();
+                    game.FormClosed += main.GameForm_FormClosed;
                     game.Show();
                 }
 
@@ -669,6 +671,7 @@ namespace Checkers
         private void button1_Click(object sender, EventArgs e)
         {
             isBackButtonClicked = true;
+            MainMenu.IsRestart = false;
             this.Close();
         }
 
