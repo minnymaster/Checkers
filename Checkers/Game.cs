@@ -125,8 +125,10 @@ namespace Checkers
                 if (result == DialogResult.Yes)
                 {
                     isBackButtonClicked = true;
+                    MainMenu.IsRestart = true;
                     this.Close();
-                    Application.Run(new Game());
+                    Game game = new Game();
+                    game.Show();
                 }
 
                 else if (result == DialogResult.No)
@@ -200,7 +202,7 @@ namespace Checkers
 
         public void OnFigurePress(object sender, EventArgs e)
         {
-            SoundPlayer soundGo = new SoundPlayer(Resources.sound_cheat);
+            SoundPlayer soundGo = new SoundPlayer(Resources.sound);
 
             if (prevButton != null)
                 prevButton.BackColor = GetPrevButtonColor(prevButton);

@@ -7,11 +7,13 @@ namespace Checkers
 {
     public partial class MainMenu : Form
     {
+        public static bool IsRestart { get; set; }
         public MainMenu()
         {
             InitializeComponent();
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.Text = "Шашки";
+            IsRestart = false;
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -36,7 +38,8 @@ namespace Checkers
         private void GameForm_FormClosed(object sender, FormClosedEventArgs e)
         {
             // Отображаем форму главного меню после закрытия формы игры
-            this.Show();
+            if(!IsRestart)
+                this.Show();
         }
 
         private void button2_Click_1(object sender, EventArgs e)
