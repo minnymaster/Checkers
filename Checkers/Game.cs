@@ -115,7 +115,9 @@ namespace Checkers
                 SoundPlayer soundWon = new SoundPlayer(Resources.game_won);
                 soundWon.Play();
 
-                if (!player1)
+                if (!player1 && !player2)
+                    message = "Ничья! \nХотите сыграть еще раз?";
+                else if(!player1)
                     message = "Победили чёрные! \nХотите сыграть еще раз?";
                 else
                     message = "Победили белые! \nХотите сыграть еще раз?";
